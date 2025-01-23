@@ -6,7 +6,8 @@ import java.util.Iterator;
 public class OrderAppMain {
     public static void main(String[] args) {
 
-        OrderService orderService = new OrderServiceArrListImpl();
+//        OrderService orderService = new OrderServiceArrListImpl();
+        OrderService orderService = new OrderServiceHashSetImpl();
 
         Order order1 = new Order("Lenovo ThinkPad", "Laptop", 10, 75000.0);
         Order order2 = new Order("iPhone 16", "Smartphone", 5, 60000.0);

@@ -1,6 +1,6 @@
 package com.labs.java.collection;
 
-public class Order implements Cloneable {
+public class Order implements Cloneable, Comparable<Order> {
     private int id;
     private String description;
     private String category;
@@ -77,5 +77,11 @@ public class Order implements Cloneable {
         } catch (CloneNotSupportedException e) {
             throw new AssertionError();
         }
+    }
+
+    @Override
+    public int compareTo(Order o) {
+        return this.getDescription().compareTo(o.description);
+//        return this.id - o.getId();
     }
 }

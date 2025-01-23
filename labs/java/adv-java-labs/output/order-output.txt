@@ -1,0 +1,3 @@
+100,Lenovo ThinkPad,Laptop,10,75000.0
+101,iPhone 16,Smartphone,5,60000.0
+102,Samsung Galazy S24,Smartphone,20,75000.0
