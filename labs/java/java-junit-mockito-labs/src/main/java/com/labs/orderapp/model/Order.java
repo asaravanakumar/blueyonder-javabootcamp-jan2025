@@ -1,4 +1,4 @@
-package com.labs.java.collection;
+package com.labs.orderapp.model;
 
 public class Order implements Cloneable, Comparable<Order> {
     private int id;
@@ -10,14 +10,7 @@ public class Order implements Cloneable, Comparable<Order> {
     public Order() {
     }
 
-    public Order( String description, String category, int quantity, double price) {
-        this.description = description;
-        this.category = category;
-        this.quantity = quantity;
-        this.price = price;
-    }
-
-    public Order(int id, String description, String category, int quantity, double price) {
+    public Order(String description, String category, int quantity, double price) {
         this.description = description;
         this.category = category;
         this.quantity = quantity;

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+		https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- Bean Installation with Constructor -->
+<!--    <bean id="corolla" class="com.labs.spring.core.xml.Car">-->
+
+    <!-- Bean Instantiation with Static Factory Method -->
+<!--    <bean id="corolla" class="com.labs.spring.core.xml.Car" factory-method="getInstance">-->
+
+    <!-- Bean instantiation with Auto wiring by Name -->
+    <!--        <bean id="corolla" class="com.labs.spring.core.xml.Car" autowire="byName">-->
+
+    <!-- Bean instantiation with Auto wiring by Type -->
+<!--    <bean id="corolla" class="com.labs.spring.core.xml.Car" autowire="byType">-->
+
+    <!-- Bean instantiation with Auto wiring by Type -->
+    <bean id="corolla" class="com.labs.spring.core.xml.Car" autowire="byType" scope="prototype" lazy-init="true">
+
+<!--        constructor arguments resolution by name-->
+<!--        <constructor-arg name="model" value="Corolla" />-->
+<!--        <constructor-arg name="make" value="Toyota" />-->
+<!--        <constructor-arg name="color" value="Blue" />-->
+
+<!--        constructor arguments resolution by type-->
+<!--        <constructor-arg type="String" value="Toyota" />-->
+<!--        <constructor-arg type="String" value="Corolla" />-->
+<!--        <constructor-arg type="String" value="Blue" />-->
+
+<!--        constructor arguments resolution by index-->
+<!--        <constructor-arg index="0" value="Toyota" />-->
+<!--        <constructor-arg index="1" value="Corolla" />-->
+<!--        <constructor-arg index="2" value="Blue" />-->
+
+        <!-- Constructor Dependency Injection -->
+<!--        <constructor-arg name="engine" ref="petrol" />-->
+
+<!--        Setter Dependency Injection -->
+<!--        <property name="engine" ref="diesel" />-->
+
+        <property name="make" value="Toyota" />
+        <property name="model" value="Corolla" />
+        <property name="color" value="White" />
+    </bean>
+
+<!--    <bean id="engine" class="com.labs.spring.core.xml.PetrolEngine">-->
+<!--        <property name="name" value="Toyota Prius" />-->
+<!--        <property name="horsePower" value="180 hp" />-->
+<!--        <property name="fuelType" value="Petrol" />-->
+<!--        <property name="transmission" value="Manual" />-->
+<!--    </bean>-->
+
+    <bean id="petrol" class="com.labs.spring.core.xml.PetrolEngine" primary="true" lazy-init="true">
+        <property name="name" value="Toyota Prius" />
+        <property name="horsePower" value="180 hp" />
+        <property name="fuelType" value="Petrol" />
+        <property name="transmission" value="Manual" />
+    </bean>
+
+    <bean id="diesel" class="com.labs.spring.core.xml.DieselEngine" autowire-candidate="false" lazy-init="true">
+        <property name="name" value="Toyota Prius Diesel" />
+        <property name="horsePower" value="160 hp" />
+        <property name="fuelType" value="Diesel" />
+        <property name="transmission" value="Manual" />
+    </bean>
+
+    <bean id="electric" class="com.labs.spring.core.xml.ElectricEngine" lazy-init="true">
+        <property name="name" value="Toyota Prius Electric" />
+        <property name="horsePower" value="140 hp" />
+        <property name="fuelType" value="Electric" />
+        <property name="transmission" value="Auto" />
+    </bean>
+
+<!--    Bean instantiation with EngineFactory Bean - START -->
+<!--    <bean id="engineFactory" class="com.labs.spring.core.xml.EngineFactory" />-->
+
+<!--    <bean id="petrol" class="com.labs.spring.core.xml.Engine" factory-bean="engineFactory" factory-method="createEngine">-->
+<!--        <constructor-arg name="engineType" value="petrol" />-->
+
+<!--        <property name="name" value="Toyota Prius" />-->
+<!--        <property name="horsePower" value="180 hp" />-->
+<!--        <property name="fuelType" value="Petrol" />-->
+<!--        <property name="transmission" value="Manual" />-->
+<!--    </bean>-->
+
+<!--    <bean id="diesel" class="com.labs.spring.core.xml.Engine" factory-bean="engineFactory" factory-method="createEngine">-->
+<!--        <constructor-arg name="engineType" value="diesel" />-->
+
+<!--        <property name="name" value="Toyota Prius Diesel" />-->
+<!--        <property name="horsePower" value="160 hp" />-->
+<!--        <property name="fuelType" value="Diesel" />-->
+<!--        <property name="transmission" value="Manual" />-->
+<!--    </bean>-->
+    <!--    Bean instantiation with EngineFactory Bean - END -->
+
+
+</beans>
