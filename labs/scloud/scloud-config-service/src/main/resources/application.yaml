@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: scloud-config-service
+  cloud: #Loads config files from Git Repository
+    config:
+      server:
+        git:
+          uri: https://github.com/asaravanakumar/config-repo.git
+
+eureka:
+    client:
+      register-with-eureka: true
+      fetch-registry: false
+      service-url:
+        default-zone: http://localhost:8761/eureka
+
+server:
+  port: 8899
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+#Loads config files from File System
+#spring.cloud.config.server.native.search-locations=file:///C:/temp/config/
+#spring.profiles.active=native
+

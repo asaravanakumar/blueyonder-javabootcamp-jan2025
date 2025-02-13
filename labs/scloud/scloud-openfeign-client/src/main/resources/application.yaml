@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: scloud-openfeign-client
+
+eureka:
+    client:
+      register-with-eureka: false
+      fetch-registry: true
+      service-url:
+        default-zone: http://localhost:8761/eureka
+
+server:
+  port: 6060

@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: client-service  # Service name (used for Config Server lookup)
+  cloud:
+    config:
+      discovery:
+        enabled: true  # Enables Config Server discovery via Eureka
+        service-id: scloud-config-service
+  profiles:
+    active: dev  # Sets active profile before loading application.yml
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/

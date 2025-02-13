@@ -1,0 +1,49 @@
+server:
+  port: 8111
+
+spring:
+  application:
+    name: scloud-gateway-service
+  cloud:
+    gateway:
+      routes:
+        - id: configRoute1
+          # http://localhost:8111/demoapp/api/products
+          #         uri: http://localhost:7070/products
+          uri: lb://scloud-product-service
+          predicates:
+            - Path=/demoapp/api/products
+#            - Method=GET,POST,PUT,DELETE
+#            - Headers={"Content-Type": "application/json"}
+#            - Query=name,product x
+#            - Host=**.example.com
+          filters:
+#            - name: CircuitBreaker
+#              args:
+#                name: userServiceCB
+#                fallbackUri: forward:/fallback/users
+#           - PrefixPath=/api
+#            - RewritePath=/old/(?<segment>.*), /new/$\{segment}
+#            - AddRequestHeader=X-Custom-Header, CustomValue
+            - StripPrefix=2
+
+# Eureka Client
+eureka:
+  client:
+    service-url:
+      default-zone: http://localhost:8761/eureka
+    register-with-eureka: true
+    fetch-registry: true
+
+# Logging
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+    org.springframework.web: DEBUG
+
+# Actuator Endpoints
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
