@@ -1,6 +1,9 @@
 package com.labs.scloud.discovery.service;
 
 import com.labs.scloud.discovery.model.Product;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -10,6 +13,10 @@ import java.util.Map;
 
 @Service
 public class ProductServiceImpl implements ProductService{
+
+    @Autowired
+    @Qualifier("objKafkaTemplate")
+    private KafkaTemplate<String,Product> kafkaTemplate;
 
     private Map<Integer, Product> products = new HashMap<>();
 
@@ -33,6 +40,11 @@ public class ProductServiceImpl implements ProductService{
     @Override
     public int createProduct(Product product) {
         product.setId(products.size() + 1);  // Assign unique ID to the new product
-        return products.put(product.getId(), product) != null ?  product.getId() : -1;
+        products.put(product.getId(), product);
+
+        // Send the new product to Kafka topic
+//        kafkaTemplate.send("product-events", "Product created. ID - " + product.getId());
+        kafkaTemplate.send("product-events", product);
+        return product.getId();
     }
 }
